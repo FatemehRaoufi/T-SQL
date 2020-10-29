@@ -1,0 +1,8 @@
+
+
+DECLARE @json NVARCHAR(max) =(
+		SELECT * FROM OPENROWSET(BULK 'D:\Code\Test.txt',SINGLE_CLOB) AS JSONFile)
+		--SELECT @json
+	
+		SELECT * FROM  OPENJSON(@json)
+		WITH( IDForm UNIQUEIDENTIFIER ,FormName NVARCHAR(max) , GenTime DATETIME2 , ERROR_Title NVARCHAR(max)   )
